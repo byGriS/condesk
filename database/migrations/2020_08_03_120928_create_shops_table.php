@@ -18,9 +18,7 @@ class CreateShopsTable extends Migration
             $table->text('title');
             $table->text('site');
             $table->text('description');
-            $table->text('login');
             $table->text('email');
-            $table->text('password');
             $table->timestamps();
         });
     }

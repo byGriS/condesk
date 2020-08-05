@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreignId('shop_id')->nullable()->constrained()->onDelete('cascade');
+            $table->text('api_token')->nullable();
         });
     }
 

@@ -1908,11 +1908,32 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      categories: []
+    };
+  },
+  beforeMount: function beforeMount() {
+    console.log(window.axios.defaults.headers.common.Authorization);
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://condesk.loc/api/category").then(function (response) {
+      console.log(response);
+    });
+  }
+});
 
 /***/ }),
 
@@ -37508,7 +37529,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("Main from vue")])
+  return _c(
+    "div",
+    [
+      _c("div", [_vm._v("Main from vue")]),
+      _vm._v(" "),
+      _vm._l(_vm.categories, function(item) {
+        return _c("div", { key: item.id }, [
+          _c("div", [_vm._v(_vm._s(item.title))])
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -49714,6 +49747,19 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+var apiToken = document.head.querySelector('meta[name="api-token"]');
+
+if (apiToken) {
+  window.axios.defaults.headers.common.Authorization = 'Bearer ' + apiToken.content;
+}
 
 /***/ }),
 

@@ -10,10 +10,19 @@
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+  @auth
+  <meta name="api-token" content="{{ auth()->user()->api_token }}">
+  @endauth
+
 </head>
 
 <body>
-  <main>
+  <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button class="btn btn-sm btn-primary">Выход</button>
+  </form>
+  <main id="app">
     @yield('content')
   </main>
 </body>

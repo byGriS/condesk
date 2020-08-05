@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
           'id' => 1,
-          'title' => 'Элетрика',
+          'title' => 'Электрика',
           'parent_id' => null
         ]);
         DB::table('categories')->insert([
