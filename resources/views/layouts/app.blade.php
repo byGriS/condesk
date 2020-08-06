@@ -18,10 +18,6 @@
 </head>
 
 <body>
-  <form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button class="btn btn-sm btn-primary">Выход</button>
-  </form>
   <main id="app">
     @yield('content')
   </main>

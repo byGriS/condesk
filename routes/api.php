@@ -19,5 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Api')->middleware('auth:api')->group(function(){
-  Route::resource('category', 'CategoryController');
+  
+});
+
+Route::namespace('Api')->group(function(){
+  Route::resource('category', 'CategoryController')->only(['index']);
 });
